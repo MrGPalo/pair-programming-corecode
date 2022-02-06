@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
 const Box = styled.div`
   border: 1px solid red;
@@ -30,14 +31,13 @@ export const Item = ({ item: { id, item, price, quantity, web } }) => {
   );
 };
 
-export const ItemsList = (items) => {
-  console.log(items)
+export const ItemsList = ({ onAddItem }) => {
+  console.log('Hola', onAddItem)
   return (
     <div>
-      <button type="button" onClick={()=> console.log('clear list')}>Clear List</button>
+      <button type="button" onClick={() => console.log('clear list')}>Clear List</button>
       <p>There are 0 items in the list</p>
-      <p>{Item}</p>
-      {/* <Item  /> */}
+      <Item item={onAddItem} />
     </div>
   );
 };

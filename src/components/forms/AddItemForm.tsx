@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { ItemsList } from "../ItemsList"
+import { ItemsList } from "../ItemsList";
+import { validate_url } from "../../lib/validate_url";
 
 const GridForm = styled.div`
   display: flex;
@@ -27,20 +28,20 @@ const ErrorMessage = ({ field, state }) => {
 };
 
 export const AddItemForm = () => {
-  const { register, handleSubmit, formState, reset } = useForm();
+  const { register, handleSubmit, formState, reset, getValues } = useForm();
 
   const submit = handleSubmit(async (data) => {
     console.log("SUBMITING FORM", data);
-    reset()
+    //reset()
   });
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <form onSubmit={submit}>
       <GridForm>
         <div>
           <p>Wishlist Item Name</p>
           <input
-            {...register("item", { required: "Indica el nombre del artículo" })} 
+            {...register("item", { required: "Indica el nombre del artículo" })}
           />
           <ErrorMessage state={formState} field="item" />
         </div>
@@ -67,10 +68,13 @@ export const AddItemForm = () => {
         </div>
       </GridForm>
       <div style={{ marginTop: 20 }}>
-        <button onClick={submit}>Save data</button>
+        <button onClick={() => {
+          const values = getValues();
+          validate_url(values.web);
+        }}>Save data</button>
       </div>
       <div>
-        <ItemsList />
+        <ItemsList onAddItem={getValues()} />
       </div>
     </form>
   );

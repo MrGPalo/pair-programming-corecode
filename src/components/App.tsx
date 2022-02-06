@@ -5,7 +5,7 @@ import { ItemsProvider } from "../hooks/useItems"
 export const App = () => {
   return (
     <div>
-    <h2>CORE Wishlist</h2>
+      <h2>CORE Wishlist</h2>
       <ItemsProvider>
         <AddItemForm />
       </ItemsProvider>
