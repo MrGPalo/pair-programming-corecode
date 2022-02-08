@@ -5,22 +5,17 @@ const ItemsContext = React.createContext();
 
 export const useItems = () => {
   const { items, addItem } = useContext(ItemsContext);
-  // //  const hasItem = (itm) => {
-  // //   items.filter((e) => e.item === itm).length > 0;
-  // // };
-  const add_item = (item) => {
-    console.log(item);
-    addItem([...items, item]);
+  const hasItem = (itm) => {
+    items.filter((e) => e.item === itm).length > 0;
   };
-  const clear = () => {
-    items = [];
-  };
-  const delete_item = (id: string) => {};
+
   return {
     items,
-    add_item,
-    clear,
-    delete_item,
+    add_item: (item) => {
+      addItem();
+    },
+    clear: () => {},
+    delete_item: (id: string) => {},
   };
 };
 

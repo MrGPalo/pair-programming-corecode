@@ -1,7 +1,6 @@
 import React from 'react';
 import { AddItemForm } from './forms/AddItemForm';
 import { ItemsProvider } from '../hooks/useItems';
-import { ItemsList } from './ItemsList';
 
 export const App = () => {
   return (
@@ -9,7 +8,9 @@ export const App = () => {
       <h2>CORE Wishlist</h2>
       <ItemsProvider>
         <AddItemForm />
-        <ItemsList />
+        <div>
+          <ItemsList onAddItem={getValues()} />
+        </div>
       </ItemsProvider>
     </div>
   );

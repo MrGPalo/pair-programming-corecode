@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useForm } from 'react-hook-form';
-import { ItemsList } from '../ItemsList';
-import { validate_url } from '../../lib/validate_url';
-import { useItems } from '../../hooks/useItems';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { ItemsList } from "../ItemsList";
+import { validate_url } from "../../lib/validate_url";
 
 const GridForm = styled.div`
   display: flex;
@@ -30,66 +29,52 @@ const ErrorMessage = ({ field, state }) => {
 
 export const AddItemForm = () => {
   const { register, handleSubmit, formState, reset, getValues } = useForm();
-  const values = getValues();
-  const handleAddItem = (values) => {
-    console.log(values);
-  };
+
   const submit = handleSubmit(async (data) => {
-    console.log('SUBMITING FORM', data);
+    console.log("SUBMITING FORM", data);
     //reset()
   });
-  const { items, add_item } = useItems();
+
   return (
     <form onSubmit={submit}>
       <GridForm>
         <div>
           <p>Wishlist Item Name</p>
           <input
-            type="text"
-            {...register('item', { required: 'Indica el nombre del artículo' })}
+            {...register("item", { required: "Indica el nombre del artículo" })}
           />
           <ErrorMessage state={formState} field="item" />
         </div>
         <div>
           <p>Price</p>
           <input
-            type="number"
-            {...register('price', {
-              required: 'Indica el precio del artículo',
-            })}
+            {...register("price", { required: "Indica el precio del artículo" })}
           />
           <ErrorMessage state={formState} field="price" />
         </div>
         <div>
           <p>Quantity</p>
           <input
-            type="number"
-            {...register('quantity', {
-              required: 'Indica la cantidad del artículo',
-            })}
+            {...register("quantity", { required: "Indica la cantidad del artículo" })}
           />
           <ErrorMessage state={formState} field="quantity" />
         </div>
         <div>
           <p>Sitio web</p>
           <input
-            type="url"
-            {...register('web', { required: 'Indica la web del artículo' })}
+            {...register("web", { required: "Indica la web del artículo" })}
           />
           <ErrorMessage state={formState} field="web" />
         </div>
       </GridForm>
       <div style={{ marginTop: 20 }}>
-        <button
-          onClick={() => {
-            // const values = getValues();
-            validate_url(values.web);
-            add_item(items);
-            handleAddItem(values);
-          }}
-        >
-          Save data
-        </button>
+        <button onClick={() => {
+          const values = getValues();
+          validate_url(values.web);
+        }}>Save data</button>
+      </div>
+      <div>
+        <ItemsList onAddItem={getValues()} />
       </div>
     </form>
   );

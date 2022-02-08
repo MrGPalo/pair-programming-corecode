@@ -30,17 +30,14 @@ const ErrorMessage = ({ field, state }) => {
 
 export const AddItemForm = () => {
   const { register, handleSubmit, formState, reset, getValues } = useForm();
-  const values = getValues();
-  const handleAddItem = (values) => {
-    console.log(values);
-  };
+
   const submit = handleSubmit(async (data) => {
     console.log('SUBMITING FORM', data);
     //reset()
   });
   const { items, add_item } = useItems();
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit(data)}>
       <GridForm>
         <div>
           <p>Wishlist Item Name</p>
@@ -82,10 +79,9 @@ export const AddItemForm = () => {
       <div style={{ marginTop: 20 }}>
         <button
           onClick={() => {
-            // const values = getValues();
+            const values = getValues();
             validate_url(values.web);
             add_item(items);
-            handleAddItem(values);
           }}
         >
           Save data

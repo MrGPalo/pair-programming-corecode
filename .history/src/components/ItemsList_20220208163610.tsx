@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
-import { useItems } from '../hooks/useItems';
 
 const Box = styled.div`
   border: 1px solid red;
@@ -16,7 +15,7 @@ export const Item = ({ item: { id, item, price, quantity, web } }) => {
   return (
     <Box>
       <p>
-        <b>Item name:</b> {item} (id:{(id = uuidv4())})
+        <b>Item name:</b> {item} (id:{id})
       </p>
       <p>
         <b>Price:</b> {price}
@@ -34,15 +33,16 @@ export const Item = ({ item: { id, item, price, quantity, web } }) => {
   );
 };
 
-export const ItemsList = () => {
-  const { items, add_item } = useItems();
+export const ItemsList = ({ onAddItem }) => {
+  console.log('Hola', onAddItem);
+  console.log('UUIDV4', uuidv4());
   return (
     <div>
       <button type="button" onClick={() => console.log('clear list')}>
         Clear List
       </button>
       <p>There are 0 items in the list</p>
-      <Item item={items} />
+      <Item item={onAddItem} />
     </div>
   );
 };

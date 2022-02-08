@@ -8,19 +8,14 @@ export const useItems = () => {
   // //  const hasItem = (itm) => {
   // //   items.filter((e) => e.item === itm).length > 0;
   // // };
-  const add_item = (item) => {
-    console.log(item);
-    addItem([...items, item]);
+  const add_item = () => {
+    addItem(item);
   };
-  const clear = () => {
-    items = [];
-  };
-  const delete_item = (id: string) => {};
   return {
     items,
-    add_item,
-    clear,
-    delete_item,
+    add_item: (item) => {},
+    clear: () => {},
+    delete_item: (id: string) => {},
   };
 };
 

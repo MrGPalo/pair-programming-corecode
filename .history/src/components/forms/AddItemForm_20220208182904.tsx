@@ -85,7 +85,7 @@ export const AddItemForm = () => {
             // const values = getValues();
             validate_url(values.web);
             add_item(items);
-            handleAddItem(values);
+            handleAddItem();
           }}
         >
           Save data

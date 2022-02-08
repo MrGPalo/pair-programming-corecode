@@ -1,3 +1,4 @@
+import { getFormControlUnstyledUtilityClasses } from '@mui/base';
 import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,6 +14,7 @@ const Box = styled.div`
 `;
 
 export const Item = ({ item: { id, item, price, quantity, web } }) => {
+  console.log('Dentro del ItemList');
   return (
     <Box>
       <p>
@@ -34,7 +36,7 @@ export const Item = ({ item: { id, item, price, quantity, web } }) => {
   );
 };
 
-export const ItemsList = () => {
+export const ItemsList = ({ onAddItem }) => {
   const { items, add_item } = useItems();
   return (
     <div>
@@ -42,7 +44,7 @@ export const ItemsList = () => {
         Clear List
       </button>
       <p>There are 0 items in the list</p>
-      <Item item={items} />
+      <Item item={onAddItem} />
     </div>
   );
 };

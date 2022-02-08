@@ -9,7 +9,9 @@ export const App = () => {
       <h2>CORE Wishlist</h2>
       <ItemsProvider>
         <AddItemForm />
-        <ItemsList />
+        <div>
+          <ItemsList onAddItem={getValues()} />
+        </div>
       </ItemsProvider>
     </div>
   );

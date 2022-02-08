@@ -13,6 +13,7 @@ const Box = styled.div`
 `;
 
 export const Item = ({ item: { id, item, price, quantity, web } }) => {
+  console.log('Dentro del ItemList');
   return (
     <Box>
       <p>
