@@ -13,10 +13,12 @@ const Box = styled.div`
 `;
 
 export const Item = ({ item: { id, item, price, quantity, web } }) => {
+  const { delete_item } = useItems()
+  const erase = () => {delete_item(id)}
   return (
     <Box>
       <p>
-        <b>Item name:</b> {item} (id:{(id = uuidv4())})
+        <b>Item name:</b> {item} (id:{(id)})
       </p>
       <p>
         <b>Price:</b> {price}
@@ -27,14 +29,17 @@ export const Item = ({ item: { id, item, price, quantity, web } }) => {
       <p>
         <b>Web:</b> <a href={web}>{web}</a>
       </p>
-      <button onClick={() => console.log(`delete ${id}`)}>
+      <button onClick={() => {
+        console.log(`delete ${id}`)
+        erase()
+      }}>
         Delete this item
       </button>
     </Box>
   );
 };
 
-export const ItemsList = () => {
+export const ItemsList = ({ onAddItem }) => {
   const { items, add_item } = useItems();
   return (
     <div>
@@ -42,7 +47,9 @@ export const ItemsList = () => {
         Clear List
       </button>
       <p>There are 0 items in the list</p>
-      <Item item={items} />
+      {/* Esta seria la funcion para pintar varios elementos de la lista */}
+      {/* {items.map(e => { <Item key={e.id } item={onAddItem} />})} */} 
+      <Item item={onAddItem} />
     </div>
   );
 };

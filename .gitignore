@@ -1,3 +1,6 @@
 .parcel-cache
 dist
 node_modules
+.history
+package-lock.json
+yarn-lock.json

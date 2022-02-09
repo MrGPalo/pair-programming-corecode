@@ -9,13 +9,15 @@ export const useItems = () => {
   // //   items.filter((e) => e.item === itm).length > 0;
   // // };
   const add_item = (item) => {
-    console.log(item);
-    addItem([...items, item]);
+    
+    addItem([...items, item, item.data.id = uuidv4()]);
+    console.log(item)
   };
-  const clear = () => {
-    items = [];
+
+  const clear = () => {  };
+  const delete_item = (id: string) => {
+    console.log(items[0][0].data)
   };
-  const delete_item = (id: string) => {};
   return {
     items,
     add_item,

@@ -84,13 +84,14 @@ export const AddItemForm = () => {
           onClick={() => {
             // const values = getValues();
             validate_url(values.web);
-            add_item(items);
             handleAddItem(values);
+            
           }}
         >
           Save data
         </button>
       </div>
+      <ItemsList onAddItem={values} />
     </form>
   );
 };
